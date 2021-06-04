@@ -8,7 +8,7 @@ function idChecker(req, res, next){
                 next()
             }else{
                 res.status(404).json({
-                    message: `Projcet with ${req.params.id} not found`
+                    message: `Projcet with ID ${req.params.id} not found`
                 })
             }
         })
