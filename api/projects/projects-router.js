@@ -24,11 +24,18 @@ router.post('/', checkPayload, (req, res, next)=>{
         .catch(next)    
 })
 router.put('/:id', idChecker, checkPayload, (req, res, next)=>{
-    Projects.update(req.body)
-        .then(update=>{})
+    Projects.update(req.params.id, req.body)
+        .then(update=>{
+            res.status(200).json(update)
+        })
         .catch(next)
 })
-router.delete('/:id', (req, res)=>{
+router.delete('/:id', idChecker, (req, res, next)=>{
+    Projects.remove(req.params.id)
+        .then(project=>{
+            res.json(project)
+        })
+        .catch(next)
     
 })
 router.get('/:id/actions', (req, res)=>{
