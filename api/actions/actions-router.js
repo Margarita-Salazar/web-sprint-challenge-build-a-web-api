@@ -13,10 +13,10 @@ router.get('/', (req, res, next)=>{
         .catch(next)
 })
 router.get('/:id', idActionChecker, (req, res)=>{
-    
+    res.status(200).json(req.action)
 })
-router.post('/', (req, res)=>{
-    
+router.post('/', checkActionPayload, (req, res)=>{
+      
 })
 router.put('/', (req, res)=>{
     
