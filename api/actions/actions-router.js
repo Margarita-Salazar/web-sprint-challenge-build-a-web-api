@@ -15,13 +15,21 @@ router.get('/', (req, res, next)=>{
 router.get('/:id', idActionChecker, (req, res)=>{
     res.status(200).json(req.action)
 })
-router.post('/', checkActionPayload, (req, res)=>{
-      
+router.post('/', checkActionPayload, (req, res, next)=>{
+    Actions.insert(req.body)
+        .then(action=>{
+            res.status(201).json(action)
+        })
+        .catch(next)
 })
-router.put('/', (req, res)=>{
-    
+router.put('/:id', idActionChecker, checkActionPayload, (req, res, next)=>{
+    Actions.update(req.params.id, req.body)
+        .then(action=>{
+            res.status(200).json(action)
+        })
+        .catch(next)
 })
-router.delete('/', (req, res)=>{
+router.delete('/:id', idActionChecker, (req, res)=>{
      
 })
 
