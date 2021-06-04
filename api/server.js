@@ -13,7 +13,7 @@ server.use(express.json())
 server.use('/api/projects', projectsRouter)
 server.use('/api/actions', actionRouter)
 
-server.use((err, req, res, next)=>{
+server.use((err, req, res, next)=>{ // eslint-disable-line
     res.status(err.status || 500).json({
         custom: "Something went wrong",
         message: err.message,
