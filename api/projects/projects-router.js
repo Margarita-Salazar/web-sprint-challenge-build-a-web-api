@@ -4,7 +4,7 @@ const router = require('express').Router()
 
 const Projects = require('./projects-model')
 
-const {idChecker} = require('./projects-middleware')
+const { idChecker, checkPayload } = require('./projects-middleware')
 
 router.get('/', (req, res, next)=>{
     Projects.get()
@@ -16,16 +16,16 @@ router.get('/', (req, res, next)=>{
 router.get('/:id', idChecker, (req, res)=>{
     res.status(200).json(req.project)
 })
-router.post('/', (req, res)=>{
+router.post('/', checkPayload, (req, res)=>{
+    res.status(201).json(req.newProject)
+})
+router.put('/:id', (req, res)=>{
     
 })
-router.put('/', (req, res)=>{
+router.delete('/:id', (req, res)=>{
     
 })
-router.delete('/', (req, res)=>{
-    
-})
-router.get('/', (req, res)=>{
+router.get('/:id/actions', (req, res)=>{
     
 })
 
