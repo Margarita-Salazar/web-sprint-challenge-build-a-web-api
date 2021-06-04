@@ -2,10 +2,16 @@
 
 const router = require('express').Router()
 
-router.get('/', (req, res)=>{
-    
+const Projects = require('./projects-model')
+
+router.get('/', (req, res, next)=>{
+    Projects.get()
+        .then(projects=>{
+            res.status(200).json(projects)
+        })
+        .catch(next)
 })
-router.get('/', (req, res)=>{
+router.get('/:id', (req, res)=>{
     
 })
 router.post('/', (req, res)=>{

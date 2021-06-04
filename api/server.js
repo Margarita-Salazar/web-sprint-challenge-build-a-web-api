@@ -13,4 +13,12 @@ server.use(express.json())
 server.use('/api/projects', projectsRouter)
 server.use('/api/actions', actionRouter)
 
+server.use((err, req, res, next)=>{
+    res.status(err.status || 500).json({
+        custom: "Something went wrong",
+        message: err.message,
+        stack: err.stack,
+      })
+})
+
 module.exports = server;    
