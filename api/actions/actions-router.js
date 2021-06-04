@@ -29,8 +29,12 @@ router.put('/:id', idActionChecker, checkActionPayload, (req, res, next)=>{
         })
         .catch(next)
 })
-router.delete('/:id', idActionChecker, (req, res)=>{
-     
+router.delete('/:id', idActionChecker, (req, res, next)=>{
+     Actions.remove(req.params.id)
+        .then(action=>{
+            res.json(action)
+        })
+        .catch(next)
 })
 
 module.exports = router
