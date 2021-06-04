@@ -38,8 +38,12 @@ router.delete('/:id', idChecker, (req, res, next)=>{
         .catch(next)
     
 })
-router.get('/:id/actions', (req, res)=>{
-    
+router.get('/:id/actions', idChecker, (req, res, next)=>{
+    Projects.getProjectActions(req.params.id)
+        .then(actions=>{
+            res.status(200).json(actions)
+        })
+        .catch(next)
 })
 
 module.exports = router
