@@ -42,7 +42,7 @@ router.get('/:id/actions', idChecker, (req, res, next)=>{
     Projects.getProjectActions(req.params.id)
         .then(actions=>{
             res.status(200).json(actions)
-        })
+        }) 
         .catch(next)
 })
 

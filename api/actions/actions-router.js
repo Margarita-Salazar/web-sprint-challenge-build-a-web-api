@@ -28,7 +28,7 @@ router.put('/:id', idActionChecker, checkActionPayload, (req, res, next)=>{
             res.status(200).json(action)
         })
         .catch(next)
-})
+}) 
 router.delete('/:id', idActionChecker, (req, res, next)=>{
      Actions.remove(req.params.id)
         .then(action=>{
